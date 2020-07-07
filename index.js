@@ -14,3 +14,12 @@ var conn = mysql.createConnection({
     database: "inventariotest"
 });
 
+conn.connect(function (err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("Conexión exitosa a base de datos");
+    }
+});
+
+
