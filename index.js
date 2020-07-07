@@ -65,8 +65,8 @@ app.post("/centrosPoblados/update", function (request, response) {
     var nombreCentroPoblado = request.body.nombreCentroPoblado;
     var ubigeo = request.body.ubigeo;
     ////AQUI QUERY
-    var variablesql = "INSERT INTO `inventariotest`.`centrospoblados` (`idCentroPoblado`, `nombreCentroPoblado`, `ubigeo`) VALUES (?, ?, ?)";
-    var parametros = [idCentroPoblado, nombreCentroPoblado, ubigeo];
+    var variablesql = "UPDATE `inventariotest`.`centrospoblados` SET `nombreCentroPoblado` = ?, `ubigeo` = ? WHERE (`idCentroPoblado` = ?)";
+    var parametros = [nombreCentroPoblado, ubigeo,idCentroPoblado];
     conn.query(variablesql, parametros, function (err, jsonRespuesta) {
         if (err) {
             console.log(err);
@@ -84,3 +84,28 @@ app.post("/centrosPoblados/update", function (request, response) {
     });
 });
 
+//localhost:3000/categoriasEquipo/update
+/* Parámetros:
+* idCategoriaEquipo Integer
+* nombreCategoriaEquipo Integer
+*  */
+app.post("/categoriasEquipo/update ", function (request, response) {
+
+    var idCategoriaEquipo = request.body.idCategoriaEquipo;
+    var nombreCategoriaEquipo = request.body.nombreCategoriaEquipo;
+
+    var variablesql = "UPDATE `inventariotest`.`categoriaequipo` SET `nombre` = ? WHERE (`idCategoriaEquipo` = ?)";
+    var parametros = [nombreCategoriaEquipo,idCategoriaEquipo];
+    conn.query(variablesql, parametros, function (err, jsonRespuesta) {
+        if (err) {
+            console.log(err);
+        } else {
+            jsonRespuesta = {
+                "idCategoriaEquipo": idCategoriaEquipo,
+                "nombre": nombreCategoriaEquipo
+
+            };
+            response.json(jsonRespuesta);
+        }
+    })
+});
