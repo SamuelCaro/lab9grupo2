@@ -241,11 +241,6 @@ app.post("/centrosPoblados/update", function (request, response) {
     });
 });
 
-//localhost:3000/categoriasEquipo/update
-/* Parámetros:
-* idCategoriaEquipo Integer
-* nombreCategoriaEquipo Integer
-*  */
 app.post("/categoriasEquipo/update ", function (request, response) {
 
     var idCategoriaEquipo = request.body.idCategoriaEquipo;
@@ -264,5 +259,42 @@ app.post("/categoriasEquipo/update ", function (request, response) {
             };
             response.json(jsonRespuesta);
         }
-    })
+    });
 });
+
+app.get("/sitios/get/:id"), function (request, response) {
+
+    var idSitio = request.params.id;
+    var sql = "SELECT s.codigoSitio, s.idCentroPoblado, s.latitud, s.longitud, s.idSitio, c.nombreCentroPoblado,(SELECT count(*) FROM inventariotest.equipos where equipos.idSitio = ? ) as cantidadEquipos FROM inventariotest.sitios as s inner join centrospoblados as c on c.idCentroPoblado =s.idCentroPoblado where idSitio = ?  ;";
+    var params = [idSitio, idSitio];
+    var sql2 = "SELECT * FROM inventariotest.equipos inner join categoriaequipo on categoriaequipo.idCategoriaEquipo = equipos.idCategoriaEquipo where idSitio = ?;"
+    var params2 = [idSitio];
+
+    conn.query(sql, params, function (err, resultado) {
+        if (err) {
+            console.log(err);
+        } else {
+
+            conn.query(sql2, params2, function (err2, resultado2) {
+                var texto;
+                texto =
+                for (var i = 0; i < resultado.cantidadEquipos; i++) {
+                    texto.append()
+                    resultado2[i].
+                }
+
+                response.json(jason);
+            })
+
+
+
+
+        }
+    });
+
+
+
+
+
+
+}
