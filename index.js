@@ -64,14 +64,14 @@ app.post("/centrosPoblados/update", function (request, response) {
     var idCentroPoblado = request.body.idCentroPoblado;
     var nombreCentroPoblado = request.body.nombreCentroPoblado;
     var ubigeo = request.body.ubigeo;
- ////AQUI QUERY
-var variablesql = "INSERT INTO `inventariotest`.`centrospoblados` (`idCentroPoblado`, `nombreCentroPoblado`, `ubigeo`) VALUES (?, ?, ?)";
-var parametros = [idCentroPoblado,nombreCentroPoblado ,ubigeo];
+    ////AQUI QUERY
+    var variablesql = "INSERT INTO `inventariotest`.`centrospoblados` (`idCentroPoblado`, `nombreCentroPoblado`, `ubigeo`) VALUES (?, ?, ?)";
+    var parametros = [idCentroPoblado, nombreCentroPoblado, ubigeo];
     conn.query(variablesql, parametros, function (err, jsonRespuesta) {
         if (err) {
             console.log(err);
         } else {
-            var jsonRespuesta = {
+            jsonRespuesta = {
                 estado: "OK",
                 datos: {
                     "idCentroPoblado": idCentroPoblado,
@@ -82,11 +82,5 @@ var parametros = [idCentroPoblado,nombreCentroPoblado ,ubigeo];
             response.json(jsonRespuesta);
         }
     });
-
-
-//response.send (`idCentropoblado: ${idCentroPoblado} | nombreCentroPoblado: ${nombreCentroPoblado} | ubigeo:${ubigeo}`);
-
-
-
 });
 
