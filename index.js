@@ -113,3 +113,58 @@ app.post("/centrosPoblados/create", function (request, response) {
 app.listen(3000, function () {
     console.log("servidor levantado exitosamente");
 });
+
+//localhost:3000/centrosPoblados/update
+/* Parámetros:
+* idCentroPoblado Integer
+* nombreCentroPoblado String
+* ubigeo Integer
+*  */
+app.post("/centrosPoblados/update", function (request, response) {
+    var idCentroPoblado = request.body.idCentroPoblado;
+    var nombreCentroPoblado = request.body.nombreCentroPoblado;
+    var ubigeo = request.body.ubigeo;
+    ////AQUI QUERY
+    var variablesql = "UPDATE `inventariotest`.`centrospoblados` SET `nombreCentroPoblado` = ?, `ubigeo` = ? WHERE (`idCentroPoblado` = ?)";
+    var parametros = [nombreCentroPoblado, ubigeo, idCentroPoblado];
+    conn.query(variablesql, parametros, function (err, jsonRespuesta) {
+        if (err) {
+            console.log(err);
+        } else {
+            jsonRespuesta = {
+
+                "idCentroPoblado": idCentroPoblado,
+                "nombreCentroPoblado": nombreCentroPoblado,
+                "ubigeo": ubigeo
+
+            };
+            response.json(jsonRespuesta);
+        }
+    });
+});
+
+//localhost:3000/categoriasEquipo/update
+/* Parámetros:
+* idCategoriaEquipo Integer
+* nombreCategoriaEquipo Integer
+*  */
+app.post("/categoriasEquipo/update ", function (request, response) {
+
+    var idCategoriaEquipo = request.body.idCategoriaEquipo;
+    var nombreCategoriaEquipo = request.body.nombreCategoriaEquipo;
+
+    var variablesql = "UPDATE `inventariotest`.`categoriaequipo` SET `nombre` = ? WHERE (`idCategoriaEquipo` = ?)";
+    var parametros = [nombreCategoriaEquipo, idCategoriaEquipo];
+    conn.query(variablesql, parametros, function (err, jsonRespuesta) {
+        if (err) {
+            console.log(err);
+        } else {
+            jsonRespuesta = {
+                "idCategoriaEquipo": idCategoriaEquipo,
+                "nombre": nombreCategoriaEquipo
+
+            };
+            response.json(jsonRespuesta);
+        }
+    })
+});
