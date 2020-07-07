@@ -275,10 +275,17 @@ app.get("/sitios/get/:id"), function (request, response) {
 
             conn.query(sql2, params2, function (err2, resultado2) {
                 var texto;
-                texto =
+                texto ={
+                    "codigoSitio": resultado[0].codigoSitio,
+                    "idCentroPoblado": resultado[0].idCentroPoblado ,
+                    "latitud":resultado[0].latitud,
+                    "longitud": resultado[0].longitud ,
+                    "idSitio": resultado[0].idSitio ,
+                    "nombreCentroPoblado": resultado[0].nombreCentroPoblado ,
+                    "cantidadEquipos": resultado[0].cantidadEquipos }
                 for (var i = 0; i < resultado.cantidadEquipos; i++) {
-                    texto.append()
-                    resultado2[i].
+                    texto.append(resultado2[i].idequipo);
+
                 }
 
                 response.json(jason);
