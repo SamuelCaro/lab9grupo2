@@ -22,16 +22,34 @@ conn.connect(function (err) {
     }
 });
 
+
 //localhost:3000/centrosPoblados/get
 app.get("/centrosPoblados/get} ", function (request, response) {
     var quert = "select * from centrosPoblados";
     conn.query(query, function (err, resultado) {
+
+    });
+
+});
+
+app.post("/centrosPoblados/create", function (request, response) {
+    var nombre = request.body.nombreCentroPoblado;
+    var ubigeo = request.body.ubigeo;
+    console.log("aaaaaaaaaaa");
+    //response.send(`Nombre: ${nombre} | Apellido: ${apellido}`);
+    var sql = "INSERT INTO inventariotest.centrospoblados (nombreCentroPoblado, ubigeo) VALUES (?, ?)";
+    var parametros = [nombre, ubigeo];
+    conn.query(sql, parametros, function (err, resultado) {
+
         if (err) {
             console.log(err);
         } else {
             response.json(resultado);
         }
-
-
     });
+
+});
+
+app.listen(3000, function () {
+    console.log("servidor levantado exitosamente");
 });
