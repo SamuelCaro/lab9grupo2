@@ -66,18 +66,17 @@ app.post("/centrosPoblados/update", function (request, response) {
     var ubigeo = request.body.ubigeo;
     ////AQUI QUERY
     var variablesql = "UPDATE `inventariotest`.`centrospoblados` SET `nombreCentroPoblado` = ?, `ubigeo` = ? WHERE (`idCentroPoblado` = ?)";
-    var parametros = [nombreCentroPoblado, ubigeo,idCentroPoblado];
+    var parametros = [nombreCentroPoblado, ubigeo, idCentroPoblado];
     conn.query(variablesql, parametros, function (err, jsonRespuesta) {
         if (err) {
             console.log(err);
         } else {
             jsonRespuesta = {
-                estado: "OK",
-                datos: {
-                    "idCentroPoblado": idCentroPoblado,
-                    "nombreCentroPoblado": nombreCentroPoblado,
-                    "ubigeo": ubigeo
-                }
+
+                "idCentroPoblado": idCentroPoblado,
+                "nombreCentroPoblado": nombreCentroPoblado,
+                "ubigeo": ubigeo
+
             };
             response.json(jsonRespuesta);
         }
@@ -95,7 +94,7 @@ app.post("/categoriasEquipo/update ", function (request, response) {
     var nombreCategoriaEquipo = request.body.nombreCategoriaEquipo;
 
     var variablesql = "UPDATE `inventariotest`.`categoriaequipo` SET `nombre` = ? WHERE (`idCategoriaEquipo` = ?)";
-    var parametros = [nombreCategoriaEquipo,idCategoriaEquipo];
+    var parametros = [nombreCategoriaEquipo, idCategoriaEquipo];
     conn.query(variablesql, parametros, function (err, jsonRespuesta) {
         if (err) {
             console.log(err);
