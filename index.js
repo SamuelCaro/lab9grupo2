@@ -78,7 +78,8 @@ app.get("/categoriasEquipo/get/:id", function (request, response) {
 
 //localhost:3000/sitios/get
 app.get("/sitios/get", function (request, response) {
-    var query = "select * from sitios";
+    var query = "select s.*, c.nombreCentroPoblado, count(e.idequipo) as \"cantidadEquipos\" from equipos e inner join sitios s on e.idSitio = s.idSitio inner join centrospoblados c \n" +
+        "on c.idCentroPoblado = s.idCentroPoblado group by e.idSitio;";
     conn.query(query, function (err, resultado) {
         if (err) {
             console.log(err);
