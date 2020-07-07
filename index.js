@@ -50,7 +50,6 @@ app.get("/centrosPoblados/get/:id", function (request, response) {
 });
 
 
-
 //localhost:3000/categoriasEquipo/get
 app.get("/categoriasEquipo/get", function (request, response) {
     var query = "select * from categoriaEquipo";
@@ -88,8 +87,6 @@ app.get("/sitios/get", function (request, response) {
         }
     });
 });
-
-
 
 
 app.post("/centrosPoblados/create", function (request, response) {
@@ -170,15 +167,32 @@ app.post("/categoriasEquipo/update ", function (request, response) {
 });
 
 //localhost:3000/sitios/get/{id}
-app.get("/sitios/get/{id}",function (request,response) {
+app.get("/sitios/get/{id}", function (request, response) {
     var idSitio = request.params.id;
     var query = "";
-    var parametros= [];
-    conn.query(query,parametros,function (err,resultado) {
+    var parametros = [];
+    conn.query(query, parametros, function (err, resultado) {
         if (err) {
             console.log(err);
         } else {
-            resultado={}
+            resultado = {
+                "codigoSitio":,
+                "idCentroPoblado":,
+                "latitud":,
+                "longitud":,
+                "idSitio":,
+                "nombreCentroPoblado":,
+                "cantidadEquipos":,
+                "equipos": [{
+                    "idequipo":,
+                    "nombreEquipo":,
+                    "idCategoriaEqupo":,
+                    "serialNumber":,
+                    "modelo":,
+                    "idSitio":,
+                    "nombreCategoria":
+                }]
+            }
             response.json(resultado);
         }
     })
