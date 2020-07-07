@@ -108,3 +108,19 @@ app.post("/categoriasEquipo/update ", function (request, response) {
         }
     })
 });
+
+//localhost:3000/sitios/get/{id}
+app.get("/sitios/get/{id}",function (request,response) {
+    var idSitio = request.params.id;
+    var query = "";
+    var parametros= [];
+    conn.query(query,parametros,function (err,resultado) {
+        if (err) {
+            console.log(err);
+        } else {
+            resultado={}
+            response.json(resultado);
+        }
+    })
+
+});
