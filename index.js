@@ -23,3 +23,28 @@ conn.connect(function (err) {
 });
 
 
+//localhost:3000/centrosPoblados/update
+/* Parámetros:
+* idCentroPoblado Integer
+* nombreCentroPoblado String
+* ubigeo Integer
+*  */
+app.post("/centrosPoblados/update", function (request, response) {
+    var idCentroPoblado = request.body.idCentroPoblado;
+    var nombreCentroPoblado = request.body.nombreCentroPoblado;
+    var ubigeo = request.body.ubigeo;
+ ////AQUI QUERY
+
+//response.send (`idCentropoblado: ${idCentroPoblado} | nombreCentroPoblado: ${nombreCentroPoblado} | ubigeo:${ubigeo}`);
+    var jsonRespuesta = {
+        estado: "OK",
+        datos: {
+            "idCentroPoblado": idCentroPoblado,
+            "nombreCentroPoblado": nombreCentroPoblado,
+            "ubigeo": ubigeo
+        }
+    };
+    response.json(jsonRespuesta);
+
+});
+
