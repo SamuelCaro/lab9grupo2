@@ -24,13 +24,73 @@ conn.connect(function (err) {
 
 
 //localhost:3000/centrosPoblados/get
-app.get("/centrosPoblados/get} ", function (request, response) {
-    var quert = "select * from centrosPoblados";
+app.get("/centrosPoblados/get", function (request, response) {
+
+    var query = "select * from centrosPoblados";
     conn.query(query, function (err, resultado) {
-
+        if (err) {
+            console.log(err);
+        } else {
+            response.json(resultado);
+        }
     });
-
 });
+
+//localhost:3000/centrosPoblados/get/:id
+app.get("/centrosPoblados/get/:id", function (request, response) {
+    var id = request.params.id;
+    var query = "select * from centrosPoblados where idCentroPoblado =" + id;
+    conn.query(query, function (err, resultado) {
+        if (err) {
+            console.log(err);
+        } else {
+            response.json(resultado);
+        }
+    });
+});
+
+
+
+//localhost:3000/categoriasEquipo/get
+app.get("/categoriasEquipo/get", function (request, response) {
+    var query = "select * from categoriaEquipo";
+    conn.query(query, function (err, resultado) {
+        if (err) {
+            console.log(err);
+        } else {
+            response.json(resultado);
+        }
+    });
+});
+
+//localhost:3000/categoriasEquipo/get/:id
+app.get("/categoriasEquipo/get/:id", function (request, response) {
+    var id = request.params.id;
+    var query = "select * from categoriaEquipo where idCategoriaEquipo = " + id;
+    conn.query(query, function (err, resultado) {
+        if (err) {
+            console.log(err);
+        } else {
+            response.json(resultado);
+        }
+    });
+});
+
+
+//localhost:3000/sitios/get
+app.get("/sitios/get", function (request, response) {
+    var query = "select * from sitios";
+    conn.query(query, function (err, resultado) {
+        if (err) {
+            console.log(err);
+        } else {
+            response.json(resultado);
+        }
+    });
+});
+
+
+
 
 app.post("/centrosPoblados/create", function (request, response) {
     var nombre = request.body.nombreCentroPoblado;
