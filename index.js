@@ -22,4 +22,16 @@ conn.connect(function (err) {
     }
 });
 
+//localhost:3000/centrosPoblados/get
+app.get("/centrosPoblados/get} ", function (request, response) {
+    var quert = "select * from centrosPoblados";
+    conn.query(query, function (err, resultado) {
+        if (err) {
+            console.log(err);
+        } else {
+            response.json(resultado);
+        }
 
+
+    });
+});
